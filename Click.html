@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comptador</title>
+    <style>
+        #contador-descendente {
+            font-size: 2em;
+            font-weight: bold;
+            color: red;
+        }
+    </style>
+    <script>
+        let contador = 0;
+        let contadorDescendente = 10;
+        let intervalo;
+
+        function iniciarContadorDescendente() {
+            if (intervalo) {
+                clearInterval(intervalo);
+            }
+            contadorDescendente = 10;
+            document.getElementById("contador-descendente").innerText = "Compte enrrera: " + contadorDescendente;
+
+            intervalo = setInterval(function() {
+                if (contadorDescendente > 0) {
+                    contadorDescendente--;
+                    document.getElementById("contador-descendente").innerText = "Compte enrrera: " + contadorDescendente;
+                } else {
+                    clearInterval(intervalo);
+                    document.getElementById("contador-descendente").innerText = "¡TEMPS ACABATS!";
+                }
+            }, 1000); // Actualiza cada segundo
+        }
+
+        function incrementarContador() {
+            contador++;
+            document.getElementById("contador").innerText = "Pardalillos que apreten: " + contador;
+            document.getElementById("mensaje").innerText = "¡Has apretat el botó!";
+            document.getElementById("advertencia").innerText = "Atenció, es comenca a borrar la memoria del equip, et queden 10 segons.";
+            iniciarContadorDescendente();
+        }
+    </script>
+</head>
+<body>
+    <h1>comptador de polsacions</h1>
+    <p id="mensaje">Apreta el botó:</p>
+    <button onclick="incrementarContador()">Apretem</button>
+    <p id="contador">Comptador: 0</p>
+    <p id="advertencia"></p> <!-- Elemento para el mensaje de advertencia -->
+    <p id="contador-descendente">Compte enrrera: 10</p> <!-- Elemento para el contador descendente -->
+</body>
+</html>
